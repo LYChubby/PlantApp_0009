@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantsapp/constraints.dart';
+import 'package:plantsapp/constanst.dart';
 import 'package:plantsapp/screens/home/components/home_screen.dart';
 
 void main() {
