@@ -1,46 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:plantsapp/constanst.dart';
-import 'package:plantsapp/screens/home/components/header_with_searchbox.dart';
-import 'package:plantsapp/screens/home/components/title_with_more_btn.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class RecomendsPlants extends StatelessWidget {
+  const RecomendsPlants({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          HeaderWithSearchBox(size: size),
-          TitleWithMoreBtn(title: "Recommended", press: () {}),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                RecomendPlantCard(
-                  image: "assets/images/image_1.png",
-                  title: "Samantha",
-                  country: "Russia",
-                  price: 440,
-                  press: () {},
-                ),
-                RecomendPlantCard(
-                  image: "assets/images/image_2.png",
-                  title: "Angelica",
-                  country: "Russia",
-                  price: 440,
-                  press: () {},
-                ),
-                RecomendPlantCard(
-                  image: "assets/images/image_3.png",
-                  title: "Samantha",
-                  country: "Russia",
-                  price: 440,
-                  press: () {},
-                ),
-              ],
-            ),
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          RecomendPlantCard(
+            image: "assets/images/image_1.png",
+            title: "Samantha",
+            country: "Russia",
+            price: 440,
+            press: () {},
+          ),
+          RecomendPlantCard(
+            image: "assets/images/image_2.png",
+            title: "Angelica",
+            country: "Russia",
+            price: 440,
+            press: () {},
+          ),
+          RecomendPlantCard(
+            image: "assets/images/image_3.png",
+            title: "Samantha",
+            country: "Russia",
+            price: 440,
+            press: () {},
           ),
         ],
       ),
