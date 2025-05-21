@@ -10,6 +10,10 @@ class Body extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
+          padding: EdgeInsets.only(
+            left: kDefaultPadding,
+            right: kDefaultPadding,
+          ),
           height: size.height * 0.2,
           child: Stack(
             children: <Widget>[
@@ -21,6 +25,21 @@ class Body extends StatelessWidget {
                     bottomLeft: Radius.circular(36),
                     bottomRight: Radius.circular(36),
                   ),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Hi Fauzi !",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineMedium?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Image.asset("assest/images/profile.jpeg"),
+                  ],
                 ),
               ),
               Positioned(
