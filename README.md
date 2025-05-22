@@ -1,16 +1,10 @@
 # plantsapp
+![flutter_01](https://github.com/user-attachments/assets/fcc59781-553c-4b3e-bf75-2ef0b35a6dc0)
 
-A new Flutter project.
+![flutter_02](https://github.com/user-attachments/assets/1e401d6a-36e3-4cb1-8534-0694e2dadf2c)
 
-## Getting Started
+![flutter_03](https://github.com/user-attachments/assets/f7499852-158f-40fd-b464-bcfffd024bc8)
 
-This project is a starting point for a Flutter application.
+![flutter_04](https://github.com/user-attachments/assets/142fa612-c120-4716-8cb4-2b186d6034c0)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![flutter_05](https://github.com/user-attachments/assets/b46c0c97-ac80-4a0c-adee-dcbbc802c8e5)
