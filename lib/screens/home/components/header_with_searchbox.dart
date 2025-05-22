@@ -28,7 +28,9 @@ class HeaderWithSearchBox extends StatelessWidget {
                   leading: const Icon(Icons.camera_alt),
                   title: const Text("Ambil Foto dengan Kamera"),
                   onTap: () async {
-                    Navigator.pop(context);
+                    final currentContext =
+                        context; // Simpan context sebelum navigasi
+                    Navigator.pop(currentContext);
                     try {
                       // Cek permission kamera
                       if (await Permission.camera.request().isGranted) {
