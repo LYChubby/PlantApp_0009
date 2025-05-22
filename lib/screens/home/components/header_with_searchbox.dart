@@ -6,6 +6,41 @@ class HeaderWithSearchBox extends StatelessWidget {
 
   final Size size;
 
+  void _showImagePickerDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Pilih Sumber Gambar"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text("Ambil Foto dengan Kamera"),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text("Pilih dari Galeri"),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("Batal"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +108,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                   prefixIcon: IconButton(
                     icon: Icon(Icons.camera_alt_outlined, color: kPrimaryColor),
                     onPressed: () {
-                      // Aksi ketika filter diklik
+                      _showImagePickerDialog(context);
                     },
                   ),
                   suffixIcon: Icon(Icons.search, color: kPrimaryColor),
