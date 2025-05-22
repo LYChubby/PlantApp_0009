@@ -70,6 +70,12 @@ class HeaderWithSearchBox extends StatelessWidget {
                   hintStyle: TextStyle(color: kPrimaryColor.withOpacity(0.5)),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
+                  prefixIcon: IconButton(
+                    icon: Icon(Icons.camera_alt_outlined, color: kPrimaryColor),
+                    onPressed: () {
+                      // Aksi ketika filter diklik
+                    },
+                  ),
                   suffixIcon: Icon(Icons.search, color: kPrimaryColor),
                 ),
               ),
