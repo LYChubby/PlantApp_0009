@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
+      backgroundColor: kPrimaryColor,
       elevation: 0,
       leading: IconButton(
         onPressed: () {},
