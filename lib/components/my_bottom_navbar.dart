@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:plantsapp/components/map_page.dart';
 import 'package:plantsapp/constanst.dart';
 
 class MyBottomNavBar extends StatelessWidget {
@@ -32,8 +33,13 @@ class MyBottomNavBar extends StatelessWidget {
             icon: SvgPicture.asset("assets/icons/flower.svg"),
           ),
           IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/heart-icon.svg"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MapPage()),
+              );
+            },
+            icon: Icon(Icons.map, color: kPrimaryColor),
           ),
           IconButton(
             onPressed: () {},
