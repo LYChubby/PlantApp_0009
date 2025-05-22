@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:plantsapp/constanst.dart';
 import 'package:plantsapp/screens/details/components/icon_card.dart';
 import 'package:plantsapp/screens/details/components/image_and_icons.dart';
+import 'package:plantsapp/screens/details/components/title_and_price.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -11,7 +12,12 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: Column(children: <Widget>[ImageAndIcons(size: size)]),
+      child: Column(
+        children: <Widget>[
+          ImageAndIcons(size: size),
+          TitleAndPrice(title: "Angelica", country: "Russia", price: 440),
+        ],
+      ),
     );
   }
 }
