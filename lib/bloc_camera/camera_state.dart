@@ -1,34 +1,40 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
-sealed class CameraEvent {}
+sealed class CameraState {}
 
-final class InitializeCamera extends CameraEvent {}
+final class CameraInitial extends CameraState {}
 
-final class SwitchCamera extends CameraEvent {}
+final class CameraReady extends CameraState {
+  final CameraController controller;
+  final int selectedIndex;
+  final FlashMode flashMode;
+  final File? imageFile;
+  final String? snackbarMessage;
 
-final class ToogleFlash extends CameraEvent {}
+  CameraReady({
+    required this.controller,
+    required this.selectedIndex,
+    required this.flashMode,
+    this.imageFile,
+    this.snackbarMessage,
+  });
 
-final class TakePicture extends CameraEvent {
-  final void Function(File imageFile) onPictureTaken;
-  TakePicture(this.onPictureTaken);
+  CameraReady copyWith({
+    CameraController? controller,
+    int? selectedIndex,
+    FlashMode? flashMode,
+    File? imageFile,
+    String? snackbarMessage,
+    bool clearSnackbar = false,
+  }) {
+    return CameraReady(
+      controller: controller ?? this.controller,
+      selectedIndex: selectedIndex ?? this.selectedIndex,
+      flashMode: flashMode ?? this.flashMode,
+      imageFile: imageFile ?? this.imageFile,
+      snackbarMessage:
+          clearSnackbar ? null : snackbarMessage ?? this.snackbarMessage,
+    );
+  }
 }
-
-final class TapToFocus extends CameraEvent {
-  final Offset position;
-  final Size previewSize;
-  TapToFocus(this.position, this.previewSize);
-}
-
-final class PickImageFromGallery extends CameraEvent {}
-
-final class OpenCameraAndCapture extends CameraEvent {
-  final BuildContext context;
-  OpenCameraAndCapture(this.context);
-}
-
-final class DeleteImage extends CameraEvent {}
-
-final class ClearSnackbar extends CameraEvent {}
-
-final class RequestPermission extends CameraEvent {}

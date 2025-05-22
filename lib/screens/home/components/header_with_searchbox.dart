@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:plantsapp/bloc_camera/camera_bloc.dart';
+import 'package:plantsapp/bloc_camera/camera_event.dart';
+import 'package:plantsapp/bloc_camera/camera_state.dart';
 import 'package:plantsapp/constanst.dart';
 
 class HeaderWithSearchBox extends StatelessWidget {
@@ -7,6 +13,9 @@ class HeaderWithSearchBox extends StatelessWidget {
   final Size size;
 
   void _showImagePickerDialog(BuildContext context) {
+    final cameraBloc = BlocProvider.of<CameraBloc>(context);
+    final imagePicker = ImagePicker();
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -18,12 +27,62 @@ class HeaderWithSearchBox extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.camera_alt),
                   title: const Text("Ambil Foto dengan Kamera"),
-                  onTap: () {},
+                  onTap: () async {
+                    Navigator.pop(context);
+                    try {
+                      // Cek permission kamera
+                      if (await Permission.camera.request().isGranted) {
+                        if (cameraBloc.state is! CameraReady) {
+                          cameraBloc.add(InitializeCamera());
+                        }
+                        cameraBloc.add(OpenCameraAndCapture(context));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Izin kamera ditolak')),
+                        );
+                      }
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Error: ${e.toString()}')),
+                      );
+                    }
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.photo_library),
                   title: const Text("Pilih dari Galeri"),
-                  onTap: () {},
+                  onTap: () async {
+                    final currentContext =
+                        context; // Simpan context sebelum navigasi
+                    Navigator.pop(currentContext);
+
+                    try {
+                      if (await Permission.photos.request().isGranted) {
+                        final pickedFile = await imagePicker.pickImage(
+                          source: ImageSource.gallery,
+                          maxWidth: 1800,
+                          maxHeight: 1800,
+                        );
+
+                        if (pickedFile != null) {
+                          if (currentContext.mounted) {
+                            // Periksa apakah widget masih aktif
+                            cameraBloc.add(PickImageFromGallery());
+                          }
+                        }
+                      } else if (currentContext.mounted) {
+                        ScaffoldMessenger.of(currentContext).showSnackBar(
+                          const SnackBar(content: Text('Izin galeri ditolak')),
+                        );
+                      }
+                    } catch (e) {
+                      if (currentContext.mounted) {
+                        ScaffoldMessenger.of(currentContext).showSnackBar(
+                          SnackBar(content: Text('Error: ${e.toString()}')),
+                        );
+                      }
+                    }
+                  },
                 ),
               ],
             ),
@@ -31,9 +90,7 @@ class HeaderWithSearchBox extends StatelessWidget {
           actions: <Widget>[
             TextButton(
               child: const Text("Batal"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         );
